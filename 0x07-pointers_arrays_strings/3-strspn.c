@@ -1,19 +1,30 @@
 #include "main.h"
+
 /**
- * _strchr - Locate a character in a string
- * @s: The string is to be searched
- *
- * @c: The character to be located
- * Return: If c is found - a pointer to the first occurence.
- * If c is not found - NULL.
+ * _strspn - Gets the length of a prefix substring.
+ * @s: The string to be searched.
+ * @accept: The prefix to be measured.
+ * Return: The number of bytes in s which
+ * consist only of bytes from accept.
  */
-char *_strchr(char *s, char c)
+
+unsigned int _strspn(char *s, char *accept)
 {
+unsigned int bytes = 0;
 int index;
-for (index = 0; s[index] >= '\0'; index++)
+while (*s)
 {
-if (s[index] == c)
-return (s + index);
+for (index = 0; accept[index]; index++)
+{
+if (*s == accept[index])
+{
+bytes++;
+break;
 }
-return ('\0');
+else if (accept[index + 1] == '\0')
+return (bytes);
+}
+s++;
+}
+return (bytes);
 }
